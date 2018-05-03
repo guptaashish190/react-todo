@@ -1,0 +1,10 @@
+.todo-element{
+  width: 200px;
+  height: 200px;
+  background: skyblue;
+  font-size: 3em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 200px;
+  border-radius: 3px;
+}
