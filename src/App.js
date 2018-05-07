@@ -32,11 +32,35 @@ class App extends Component {
     this.setState({todos: currentTodos});
   }
 
+  addTodo = ()=>{
+    var currentTodos = this.state.todos;
+
+    console.log("clicked");
+
+    currentTodos.push({
+        title: "Title",
+        content : "Content",
+        id : this.id++
+     });
+
+     this.setState({
+       todos: currentTodos
+     });
+  }
+
   render() {
     return (
-      <div className="todo-list-container">
-        {this.state.todos.map((todo) => <TodoElement id= {todo.id} updateTodo = {this.updateTodo} removeTodo={this.removeTodo} key={todo.id} title = {todo.title} content = {todo.content}></TodoElement>)}
+      <div>
+        <Intro/>
+        <div className="container">
+      
+        <img className="add-img" src="images/add.png" onClick ={this.addTodo}/>
+        <div className="todo-list-container">
+          {this.state.todos.map((todo) => <TodoElement id= {todo.id} updateTodo = {this.updateTodo} removeTodo={this.removeTodo} key={todo.id} title = {todo.title} content = {todo.content}></TodoElement>)}
+        </div>
       </div>
+        </div>
+      
     );
   }
 }
@@ -74,6 +98,24 @@ class TodoElement extends Component {
       </div>
     );
   }
+}
+
+
+class Intro extends Component {
+  state = {
+    animation: true
+  }
+
+  render(){
+    return(
+      <div className="intro-container">
+        <div className="welcome-text">
+          Welcome
+        </div>
+      </div>
+    );
+  }
+
 }
 
 export default App;
