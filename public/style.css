@@ -27,16 +27,17 @@ textarea{
   width: 190px;
 }
 .todo-element{
+  position: relative;
   width: 200px;
   height: 200px;
   background: skyblue;
   font-size: 1em;
   text-align: center;
   vertical-align: middle;
-  border-radius: 2px;
   box-shadow: 0px 0px 12px #4aa7e8 inset;
   box-shadow: 0px 0px 12px black;
   margin:2px 2px;
+  transition: all 0.4s ease 0s;
 }
 .title{
   position: relative;
@@ -74,17 +75,17 @@ textarea{
   justify-content: center;
   height: 60%;
 }
-.todo-list-container{
+.todo-list-container span{
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   position: absolute;
-  align-content: space-around;
   top:0;
   left:0;
   width: 100%;
   justify-content: center;
   align-items: center;
+  align-content: center;
   height: 100%;
 }
 .add-img{
@@ -112,14 +113,43 @@ textarea{
   background: #161616;
   width:100%;
   height:100%;
-  opacity: 0;
   animation: introContainer 4s linear 7s;
+  animation-fill-mode: both;
 }
 .welcome-text{
   opacity: 0;
-  color:white;
+  color:rgb(209, 209, 209);
   animation: intro 5s linear 2s;
 }
+.element-anim-enter{
+  width: 0px;
+  height: 0px;
+  transform:translate(0px,-200px);
+  opacity: 0;
+}
+
+.element-anim-enter.element-anim-enter-active{
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  transform:translate(0px,0px);
+}
+.element-anim-leave{ 
+  width: 200px;
+  height: 200px;
+  transform: scale(1,1);
+  opacity: 1;
+}
+
+.element-anim-leave.element-anim-leave-active{
+  width: 0px;
+  height: 0px;
+  transform: scale(1.3,1.3);
+  opacity: 0.01;
+  transition: all 0.4s ease-out 0s;
+}
+
+
 @keyframes intro{
   0%{
     opacity: 0;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 class App extends Component {
 
   id = 0;
@@ -51,12 +51,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Intro/>
         <div className="container">
       
         <img className="add-img" src="images/add.png" onClick ={this.addTodo}/>
         <div className="todo-list-container">
+
+        <ReactCSSTransitionGroup
+          transitionName = "element-anim"
+          transitionEnterTimeout = {400}
+          transitionLeaveTimeout = {400}>
+
           {this.state.todos.map((todo) => <TodoElement id= {todo.id} updateTodo = {this.updateTodo} removeTodo={this.removeTodo} key={todo.id} title = {todo.title} content = {todo.content}></TodoElement>)}
+        
+        </ReactCSSTransitionGroup>
+        
         </div>
       </div>
         </div>
@@ -106,7 +114,16 @@ class Intro extends Component {
     animation: true
   }
 
+  hideIntro = () =>{
+    setTimeout(() => {
+        document.querySelector(".intro-container").style.display = "none";
+    },11000);
+  }
+
   render(){
+
+    this.hideIntro();
+
     return(
       <div className="intro-container">
         <div className="welcome-text">
